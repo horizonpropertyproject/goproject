@@ -1,0 +1,70 @@
+package main
+
+import "html/template"
+
+var tpl *template.Template
+
+func init()
+{
+tpl=template.Must(template.parseGlob("/templates/*.gohtml"))
+}
+func main()
+{
+ http.HnadleFunc("/index",idx)
+ http.HnadleFunc("/amenities",ame)
+http.HnadleFunc("/floor_plan",floor)
+http.HnadleFunc("/price",pricing)
+http.HnadleFunc("/location",locate)
+http.ListerAnd Serve(":8080",nill)
+}
+
+func idx(w http.ResponseWriter,req *http.Request)
+{
+  err := tpl.ExecuteTemplate(w,"index.gohtml",nil)
+	if err!=nill
+	{
+	log.PrintLn(err)
+	http.Error(w,"Internal Server Error",http.StatusInternal ServerError)
+	}
+        fmt.Println("we got Index")
+}
+func ame(w http.ResponseWriter,req *http.Request)
+{
+err := tpl.ExecuteTemplate(w,"amenities.gohtml",nil)
+	if err!=nill
+	{
+	log.PrintLn(err)
+	http.Error(w,"Internal Server Error",http.StatusInternal ServerError)
+	}
+        fmt.Println("we got Amenities")
+}
+func floor(w http.ResponseWriter,req *http.Request)
+{
+err := tpl.ExecuteTemplate(w,"floor_plan.gohtml",nil)
+	if err!=nill
+	{
+	log.PrintLn(err)
+	http.Error(w,"Internal Server Error",http.StatusInternal ServerError)
+	}
+        fmt.Println("we got floor plans")
+}
+func pricing(w http.ResponseWriter,req *http.Request)
+{
+err := tpl.ExecuteTemplate(w,"price.gohtml",nil)
+	if err!=nill
+	{
+	log.PrintLn(err)
+	http.Error(w,"Internal Server Error",http.StatusInternal ServerError)
+	}
+        fmt.Println("we got Pricing")
+}
+func locate(w http.ResponseWriter,req *http.Request)
+{
+err := tpl.ExecuteTemplate(w,"location.gohtml",nil)
+	if err!=nill
+	{
+	log.PrintLn(err)
+	http.Error(w,"Internal Server Error",http.StatusInternal ServerError)
+	}
+        fmt.Println("we got Location")
+}
